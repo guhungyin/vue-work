@@ -115,7 +115,7 @@
             <div class="col-12 mt-3">
                 <div class="row">
                     <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 mb-lg-0" v-for="item in products">
-                        <div class="card h-100">
+                        <div v-bind:id="item.id" class="card h-100">
                             <img class="card-img-top img-fluid" v-bind:src="item.imagesmallUrl" v-bind:alt="item.title" class="">
                             <div class="card-body">
                                 <p class="fw-bold fs-4">{{item.title}}</p>
