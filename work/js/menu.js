@@ -1,0 +1,43 @@
+const { createApp } = Vue;
+const app = {
+    data(){
+        return{
+            linkAll:[
+                {
+                    name:'第一週',
+                    link:'../01/index.html'
+                },
+                {
+                    name:'第二週',
+                    link:'../02/index.html'
+                },
+                {
+                    name:'第三週',
+                    link:'../03/index.html'
+                },
+                {
+                    name:'第四週',
+                    link:'../04/index.html'
+                },
+                {
+                    name:'第五週',
+                    link:'../05/index.html'
+                },
+                {
+                    name:'第六週',
+                    link:'../06/index.html'
+                },
+                {
+                    name:'第七週',
+                    link:'../07/index.html'
+                },
+                {
+                    name:'第八週',
+                    link:'../08/index.html'
+                },
+            ]
+        }
+    }
+}
+createApp(app)
+.mount('#app');

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>VUE直播班 | 作業練習 | 第一週</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="app">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../index.html">每週作業總覽</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
+                    <li class="nav-item" v-for="(item) in linkAll">
+                        <a class="nav-link" v-bind:href="item.link">{{item.name}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="center-menu py-2">
+        <div class="container pt-2 pb-3 py-lg-3">
+            <div class="d-lg-flex justify-content-between">
+            <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item fw-bold"><a href="#" class="text-decoration-none">首頁</a></li>
+                        <li class="breadcrumb-item fw-bold active" aria-current="page">產品列表</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="order-lg-1 pe-lg-4 text-center text-lg-start">
+                <h1 class="h3 text-light mb-0 fw-bold">產品列表</h1>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div id="content" class="container-fluid pt-4">
+        <p>目前有 <span>{{products.length}}</span> 項產品</p>
+        <div class="row">
+            <div class="col-12 my-4">
+                <div v-if="tempProduct.category">
+                    <div class="card h-100">
+                        <div class="row g-0">
+                            <div class="col-12 col-sm-5">
+                                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-indicators">
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    </div>
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item justify-content-center active">
+                                            <img v-bind:src="tempProduct.imageUrl" class="img-fluid banner-img" alt="...">
+                                        </div>
+                                        <div class="carousel-item justify-content-center">
+                                            <img v-bind:src="tempProduct.imagesUrl[0]" class="img-fluid banner-img" alt="...">
+                                        </div>
+                                        <div class="carousel-item justify-content-center">
+                                            <img v-bind:src="tempProduct.imagesUrl[1]" class="img-fluid banner-img" alt="...">
+                                        </div>
+                                    </div>
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-7">
+                                <div class="card-body">
+                                    <div class="mb-2 d-flex justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <span class="d-flex align-items-center">
+                                                <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="store" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="svg-inline--fa fa-store"><path fill="currentColor" d="M431.3 206.8C426.5 203.3 422.2 199.4 418.3 195C414.4 199.3 410.1 203.2 405.4 206.7C390.9 217.5 372.8 224 353.1 224C333.5 224 315.6 217.6 301.1 206.1C296.3 203.4 291.9 199.4 287.9 195C283.9 199.4 279.5 203.4 274.7 206.1C260.2 217.6 242.3 224 222.7 224C203.2 224 185.2 217.6 170.7 206.1C165.9 203.4 161.5 199.4 157.6 195C153.6 199.4 149.1 203.4 144.3 206.1C129.9 217.6 111.1 224 92.36 224C88.3 224 84.21 223.7 80.24 223.2C24.92 215.8-1.255 150.6 28.33 103.8L85.66 13.13C90.76 4.979 99.87 0 109.6 0H466.4C476.1 0 485.2 4.978 490.3 13.13L547.6 103.8C577.3 150.7 551 215.8 495.5 223.2C491.6 223.7 487.6 224 483.4 224C463.8 224 445.8 217.5 431.3 206.8H431.3zM464.4 32H111.6L55.38 120.9C36.71 150.5 55.1 187.5 84.44 191.5C87.11 191.8 89.8 192 92.36 192C108.1 192 123.6 184.8 133.8 173.6C139.9 166.9 148.5 163 157.6 163C166.6 163 175.2 166.9 181.3 173.6C191.5 184.8 206.2 192 222.7 192C239.3 192 253.1 184.8 264.2 173.6C270.2 166.9 278.9 163 287.9 163C296.1 163 305.6 166.9 311.6 173.6C321.8 184.8 336.5 191.1 353.1 191.1C369.7 191.1 384.3 184.8 394.5 173.6C400.6 166.9 409.2 163 418.2 163C427.2 163 435.9 166.8 441.9 173.5C452.2 184.8 466.1 191.1 483.4 191.1C486.1 191.1 488.7 191.8 491.4 191.5C520.9 187.5 539.3 150.5 520.6 120.9L464.4 32zM96 272V352H480V272C480 263.2 487.2 256 496 256C504.8 256 512 263.2 512 272V448C512 483.3 483.3 512 448 512H128C92.65 512 64 483.3 64 448V272C64 263.2 71.16 256 80 256C88.84 256 96 263.2 96 272zM96 448C96 465.7 110.3 480 128 480H448C465.7 480 480 465.7 480 448V384H96V448z"></path></svg>
+                                            </span>
+                                            <span class="ms-2">{{tempProduct.category}}</span>
+                                        </div>
+                                        <button type="button" class="btn" v-on:click="tempProduct={}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle " viewBox="0 0 16 16">
+                                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <h4 class="card-title fw-bold">{{tempProduct.title}}</h5>
+                                    <p class="card-text fw-bold">{{tempProduct.description}}</p>
+                                    <p class="card-text">商品{{tempProduct.content}}</p>
+                                    <p class="card-text"></p>
+                                    <p class="card-text text-decoration-line-through">建議售價 : {{tempProduct.origin_price}}</p>
+                                    <p class="card-text fw-bold fs-4 text-danger">優惠價 : {{tempProduct.price}}</p>
+                                    <p class="card-text">
+                                        <small class="text-muted">庫存量 : {{tempProduct.num}}{{tempProduct.unit}}</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-else class="d-flex h-100 align-items-center justify-content-center">
+                    <h4 class="fw-bold">請選擇一個商品查看!!</h4>
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 mb-lg-0" v-for="item in products">
+                        <div class="card">
+                            <img class="card-img-top img-fluid" v-bind:src="item.imagesmallUrl" v-bind:alt="item.title" class="">
+                            <div class="card-body">
+                                <p class="fw-bold fs-4">{{item.title}}</p>
+                                <p class="product-content">{{item.description}}</p>
+                                <div class="d-flex align-items-end">
+                                    <p>售價:</p>
+                                    <p class="ms-2 origin-price text-decoration-line-through">${{item.origin_price}}</p>
+                                    <p class="ms-2 text-danger fw-bold fst-italic fs-4">${{item.price}}</p>
+                                </div>
+                                <small class="text-muted d-flex mb-2">
+                                    是否上架 : 
+                                    <span v-if="item.is_enabled" class="ms-1 text-success">以上架</span>
+                                    <span v-else>不啟用</span>
+                                </small>
+                                <div class="d-flex">
+                                    <a href="#" class="btn btn-primary ms-auto" v-on:click="tempProduct = {...item}">查看詳情</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/menu.js"></script>
+    <script src="js/main.js"></script>
+</script>
+</body>
+</html>
