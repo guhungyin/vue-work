@@ -114,8 +114,8 @@
             </div>
             <div class="col-12 mt-3">
                 <div class="row">
-                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 mb-lg-0" v-for="(product,key) in products" :key="key">
-                        <div :id="product.id" class="card h-100">
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 mb-lg-0" v-for="(product,key) in products" :key="product.id">
+                        <div class="card h-100">
                             <img class="card-img-top img-fluid" :src="product.imagesmallUrl" :alt="product.title" class="">
                             <div class="card-body">
                                 <p class="fw-bold fs-4">{{product.title}}</p>
