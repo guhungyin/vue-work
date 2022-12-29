@@ -19,8 +19,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
-                    <li class="nav-item" v-for="(item) in linkAll">
-                        <a class="nav-link" v-bind:href="item.link">{{item.name}}</a>
+                    <li class="nav-item" v-for="item in linkAll">
+                        <a class="nav-link" :href="item.link">{{item.name}}</a>
                     </li>
                 </ul>
             </div>
@@ -59,13 +59,13 @@
                                     </div>
                                     <div class="carousel-inner">
                                         <div class="carousel-item justify-content-center active">
-                                            <img v-bind:src="tempProduct.imageUrl" class="img-fluid banner-img" alt="...">
+                                            <img :src="tempProduct.imageUrl" class="img-fluid banner-img" alt="...">
                                         </div>
                                         <div class="carousel-item justify-content-center">
-                                            <img v-bind:src="tempProduct.imagesUrl[0]" class="img-fluid banner-img" alt="...">
+                                            <img :src="tempProduct.imagesUrl[0]" class="img-fluid banner-img" alt="...">
                                         </div>
                                         <div class="carousel-item justify-content-center">
-                                            <img v-bind:src="tempProduct.imagesUrl[1]" class="img-fluid banner-img" alt="...">
+                                            <img :src="tempProduct.imagesUrl[1]" class="img-fluid banner-img" alt="...">
                                         </div>
                                     </div>
                                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -87,7 +87,7 @@
                                             </span>
                                             <span class="ms-2">{{tempProduct.category}}</span>
                                         </div>
-                                        <button type="button" class="btn" v-on:click="tempProduct={}">
+                                        <button type="button" class="btn" @click="tempProduct={}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle " viewBox="0 0 16 16">
                                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
@@ -114,24 +114,24 @@
             </div>
             <div class="col-12 mt-3">
                 <div class="row">
-                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 mb-lg-0" v-for="item in products">
-                        <div v-bind:id="item.id" class="card h-100">
-                            <img class="card-img-top img-fluid" v-bind:src="item.imagesmallUrl" v-bind:alt="item.title" class="">
+                    <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 mb-lg-0" v-for="(product,key) in products" :key="key">
+                        <div :id="product.id" class="card h-100">
+                            <img class="card-img-top img-fluid" :src="product.imagesmallUrl" :alt="product.title" class="">
                             <div class="card-body">
-                                <p class="fw-bold fs-4">{{item.title}}</p>
-                                <p class="product-content">{{item.description}}</p>
-                                <div class="d-flex align-items-end">
+                                <p class="fw-bold fs-4">{{product.title}}</p>
+                                <p class="product-content">{{product.description}}</p>
+                                <div class="d-flex align-products-end">
                                     <p>售價:</p>
-                                    <p class="ms-2 origin-price text-decoration-line-through">${{item.origin_price}}</p>
-                                    <p class="ms-2 text-danger fw-bold fst-italic fs-4">${{item.price}}</p>
+                                    <p class="ms-2 origin-price text-decoration-line-through">${{product.origin_price}}</p>
+                                    <p class="ms-2 text-danger fw-bold fst-italic fs-4">${{product.price}}</p>
                                 </div>
                                 <small class="text-muted d-flex mb-2">
                                     是否上架 : 
-                                    <span v-if="item.is_enabled" class="ms-1 text-success">已上架</span>
+                                    <span v-if="product.is_enabled" class="ms-1 text-success">已上架</span>
                                     <span v-else>不啟用</span>
                                 </small>
                                 <div class="d-flex">
-                                    <button type="button" class="btn btn-primary ms-auto" v-on:click="tempProduct = {...item}">查看詳情</button>
+                                    <button type="button" class="btn btn-primary ms-auto" @click="tempProduct = product">查看詳情</button>
                                 </div>
                             </div>
                         </div>
