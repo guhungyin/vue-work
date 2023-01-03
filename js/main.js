@@ -9,7 +9,7 @@ const app = {
                 },
                 {
                     name:'第二週',
-                    link:'work/02/index.html'
+                    link:'work/02/login.html'
                 },
                 {
                     name:'第三週',
