@@ -48,22 +48,30 @@
                 <div v-if="tempProduct.category">
                     <div class="card h-100">
                         <div class="row g-0">
-                            <div class="col-12 col-sm-5">
+                            <div class="col-12 col-md-6">
                                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-indicators">
                                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
                                     </div>
                                     <div class="carousel-inner">
                                         <div class="carousel-item justify-content-center active">
-                                            <img :src="tempProduct.imageUrl" class="img-fluid banner-img" alt="...">
+                                            <img :src="tempProduct.imagesUrl[0]" class="img-fluid banner-img" :alt="tempProduct.title">
                                         </div>
                                         <div class="carousel-item justify-content-center">
-                                            <img :src="tempProduct.imagesUrl[0]" class="img-fluid banner-img" alt="...">
+                                            <img :src="tempProduct.imagesUrl[1]" class="img-fluid banner-img" :alt="tempProduct.title">
                                         </div>
                                         <div class="carousel-item justify-content-center">
-                                            <img :src="tempProduct.imagesUrl[1]" class="img-fluid banner-img" alt="...">
+                                            <img :src="tempProduct.imagesUrl[2]" class="img-fluid banner-img" :alt="tempProduct.title">
+                                        </div>
+                                        <div class="carousel-item justify-content-center">
+                                            <img :src="tempProduct.imagesUrl[3]" class="img-fluid banner-img" :alt="tempProduct.title">
+                                        </div>
+                                        <div class="carousel-item justify-content-center">
+                                            <img :src="tempProduct.imagesUrl[4]" class="img-fluid banner-img" :alt="tempProduct.title">
                                         </div>
                                     </div>
                                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -76,7 +84,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-7">
+                            <div class="col-12 col-md-6">
                                 <div class="card-body">
                                     <div class="mb-2 d-flex justify-content-between">
                                         <div class="d-flex align-items-center">
@@ -114,7 +122,7 @@
                 <div class="row">
                     <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4 mb-lg-0" v-for="(product,key) in products" :key="product.id">
                         <div class="card h-100">
-                            <img class="card-img-top img-fluid" :src="product.imagesmallUrl" :alt="product.title" class="">
+                            <img class="card-img-top img-fluid" :src="product.imageUrl" :alt="product.title">
                             <div class="card-body">
                                 <p class="fw-bold fs-4">{{product.title}}</p>
                                 <p class="product-content">{{product.description}}</p>
@@ -147,7 +155,7 @@
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
     <script src="../js/menu.js"></script>
-    <script src="js/products.js" type="module"></script>
+    <script src="js/products.js"></script>
 </script>
 </body>
 </html>
