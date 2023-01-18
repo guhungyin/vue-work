@@ -25,53 +25,55 @@
         </div>
     </nav>
     <div id="content" class="container mt-3">
-        <div class="text-end mt-4">
-            <button class="btn btn-primary" @click="openModal('new')"> 建立新的產品 </button>
+        <div>
+            <div class="text-end mt-4">
+                <button class="btn btn-primary" @click="openModal('new')"> 建立新的產品 </button>
+            </div>
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th scope="col">分類</th>
+                        <th scope="col">產品圖片</th>
+                        <th scope="col">產品名稱</th>
+                        <th scope="col">原價</th>
+                        <th scope="col">售價</th>
+                        <th scope="col">是否啟用</th>
+                        <th scope="col">編輯</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item) in products" :key="item.id">
+                        <td>{{item.category}}</td>
+                        <td>
+                            <img :src="item.imageUrl" alt="" class="bg-secondary img-fluid me-2" width="60">
+                        </td>
+                        <td>
+                            <span>{{item.title}}</span>
+                        </td>
+                        <td>{{item.origin_price}}</td>
+                        <td>{{item.price}}</td>
+                        <td>
+                            <span v-if="item.is_enabled" class="text-success">啟用</span>
+                            <span v-else>未啟用</span>
+                        </td>
+                        <td>
+                            <button type="button" href="#" class="btn text-decoration-none me-3 p-0 edit" @click="openModal('edit', item)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                </svg>
+                            </button>
+                            <button type="button" href="#" class="btn text-decoration-none p-0 delete" @click="openModal('delete', item)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <table class="table align-middle">
-            <thead>
-                <tr>
-                    <th scope="col">分類</th>
-                    <th scope="col">產品圖片</th>
-                    <th scope="col">產品名稱</th>
-                    <th scope="col">原價</th>
-                    <th scope="col">售價</th>
-                    <th scope="col">是否啟用</th>
-                    <th scope="col">編輯</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item) in products" :key="item.id">
-                    <td>{{item.category}}</td>
-                    <td>
-                        <img :src="item.imageUrl" alt="" class="bg-secondary img-fluid me-2" width="60">
-                    </td>
-                    <td>
-                        <span>{{item.title}}</span>
-                    </td>
-                    <td>{{item.origin_price}}</td>
-                    <td>{{item.price}}</td>
-                    <td>
-                        <span v-if="item.is_enabled" class="text-success">啟用</span>
-                        <span v-else>未啟用</span>
-                    </td>
-                    <td>
-                        <button type="button" href="#" class="btn text-decoration-none me-3 p-0 edit" data-bs-toggle="modal" data-bs-target="#ProductModal" @click="openModal('edit',item)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                            </svg>
-                        </button>
-                        <button type="button" href="#" class="btn text-decoration-none p-0 delete" data-bs-toggle="modal" data-bs-target="#delProductModal" @click="openModal('delete',item)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                            </svg>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
         <!-- 新增、編輯視窗 -->
         <div class="modal fade" id="ProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -163,23 +165,24 @@
             </div>
         </div>
         <!-- 刪除視窗 -->
-        <div class="modal fade" id="delProductModal" tabindex="-1" aria-labelledby="delProductModalLabel" aria-hidden="true">
+        <div class="modal fade" id="delProductModal" ref="delProductModal" tabindex="-1" aria-labelledby="delProductModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <span class="text-white">刪除產品</span>
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h5 class="modal-title" id="delProductModalLabel">
+                            <span class="text-white">刪除產品</span>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    是否刪除
+                    <strong class="text-danger">{{ tempProduct.title }}</strong>商品(刪除後將無法恢復)。 
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"> 取消 </button>
+                    <button type="button" class="btn btn-danger" @click="delProduct"> 確認刪除 </button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                是否刪除<strong class="text-danger">{{tempProduct.title}}</strong>商品(刪除後將無法恢復)。 
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"> 取消 </button>
-                <button type="button" class="btn btn-danger" @click="delProduct"> 確認刪除 </button>
-                </div>
-            </div>
             </div>
         </div>
     </div>

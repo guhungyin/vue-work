@@ -67,11 +67,11 @@ createApp({
                 this.isNew = true;
                 ProductModal.show();
             } else if (isNew === 'edit') {
-                this.tempProduct = {...item }
+                this.tempProduct = {...item };
                 this.isNew = false;
                 ProductModal.show();
-            } else if (isNew === 'delet') {
-                this.tempProduct = {...item }
+            } else if (isNew === 'delete') {
+                this.tempProduct = {...item };
                 delProductModal.show();
             }
         },
