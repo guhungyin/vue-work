@@ -17,7 +17,7 @@ const app = {
                 },
                 {
                     name:'第四週',
-                    link:'../04/index.html'
+                    link:'../04/login.html'
                 },
                 {
                     name:'第五週',
