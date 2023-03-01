@@ -1,5 +1,7 @@
+import footerBox from "../../../footerBox.js";
 let ProductModal = null;
 let delProductModal = null;
+const { createApp } = Vue;
 createApp({
     data() {
         return {
@@ -89,5 +91,8 @@ createApp({
             this.tempProduct.imagesUrl = [];
             this.tempProduct.imagesUrl.push('');
         }
+    },
+    components:{
+        footerBox
     }
-}).mount('#content');
+}).mount('#app');

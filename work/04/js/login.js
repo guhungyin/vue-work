@@ -1,3 +1,4 @@
+const { createApp } = Vue;
 createApp({
     data(){
         return{
@@ -38,4 +39,4 @@ createApp({
             })
         }
     }
-}).mount('#content');
+}).mount('#app');

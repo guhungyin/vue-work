@@ -1,3 +1,5 @@
+import footerBox from '../../../footerBox.js';
+const { createApp } = Vue;
 createApp({
     data() {
         return {
@@ -60,4 +62,7 @@ createApp({
             tempProduct: {}
         }
     },
-}).mount('#content');
+    components:{
+        footerBox
+    }
+}).mount('#app');

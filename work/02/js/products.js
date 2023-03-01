@@ -1,3 +1,5 @@
+import footerBox from "../../../footerBox.js";
+const { createApp } = Vue;
 createApp({
     data() {
         return {
@@ -38,4 +40,7 @@ createApp({
         axios.defaults.headers.common['Authorization'] = token;
         this.checkAdmin();
     },
-}).mount('#content');
+    components:{
+        footerBox
+    }
+}).mount('#app');
