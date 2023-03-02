@@ -2,6 +2,20 @@ import footerBox from "../../../footerBox.js";
 const apiUrl = 'https://vue3-course-api.hexschool.io/v2';
 const apiPath = 'aboos-work';
 const { createApp } = Vue;
+
+const { defineRule, Form, Field, ErrorMessage, configure } = VeeValidate;
+const { required, email, min, max } = VeeValidateRules;
+const { localize, loadLocaleFromURL } = VeeValidateI18n;
+
+defineRule('required', required);
+defineRule('email', email);
+defineRule('min', min);
+defineRule('max', max);
+loadLocaleFromURL('https://unpkg.com/@vee-validate/i18n@4.1.0/dist/locale/zh_TW.json');
+configure({
+    generateMessage: localize('zh_TW'),
+    validateOnInput: true, // 調整為：輸入文字時，就立即進行驗證
+});
 const productModal = {
     //當id變動時，取得遠單資料，並呈現Modal
     props:['id','addToCatr','openModal'],
@@ -43,13 +57,22 @@ const productModal = {
         // this.modal.show();
     }
 };
-createApp({
+const app = createApp({
     data() {
         return {
             products: [],
             productId: {},
             cart: {},
             loadingItem: '',// 存id
+            form: {
+                user: {
+                name: '',
+                email: '',
+                tel: '',
+                address: '',
+                },
+                message: '',
+            },
         }
     },
     methods: {
@@ -123,13 +146,23 @@ createApp({
                 console.log(err);
             })
         },
+        onSubmit(){
+            console.log('onSubmit');
+        }
     },
     components:{
         footerBox,
         productModal,
+        VForm: Form,
+        VField: Field,
+        ErrorMessage: ErrorMessage,
     },
     mounted() {
         this.getProducts();
         this.getCarts();
     }
-}).mount('#app');
+});
+app.component('VForm', VeeValidate.Form);
+app.component('VField', VeeValidate.Field);
+app.component('ErrorMessage', VeeValidate.ErrorMessage);
+app.mount('#app');
